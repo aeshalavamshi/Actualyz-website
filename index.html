@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Actualyz — Personalised Mentorship, Made Accessible</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --cream:   #FFF8F0;
+      --white:   #FFFFFF;
+      --navy:    #0D1B2A;
+      --navy-mid:#1a3347;
+      --saffron: #E07A2F;
+      --saffron-light: #FFF0E0;
+      --saffron-pale:  #FFF8F2;
+      --blue-pale:  #E8F2FF;
+      --peach-pale: #FFF0E4;
+      --text:    #0D1B2A;
+      --muted:   #5a6878;
+      --border:  rgba(13,27,42,0.1);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      background: rgba(255,248,240,0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 6%; height: 64px;
+    }
+    .nav-logo {
+      font-size: 1.3rem; font-weight: 900; letter-spacing: 3px;
+      color: var(--navy); text-decoration: none;
+    }
+    .logo-a { color: var(--saffron); }
+    .logo-z { color: #1a6fa8; }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      font-size: 0.85rem; font-weight: 500; color: var(--muted);
+      text-decoration: none; transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--navy); }
+    .nav-cta {
+      background: var(--saffron); color: var(--white);
+      padding: .5rem 1.4rem; border-radius: 50px;
+      font-size: 0.85rem; font-weight: 700;
+      text-decoration: none; transition: opacity .2s;
+    }
+    .nav-cta:hover { opacity: .85; }
+
+    /* ─── HERO ─── */
+    .hero {
+      min-height: 100vh;
+      background-color: var(--cream);
+      background-image: radial-gradient(circle, #d4bfa8 1px, transparent 1px);
+      background-size: 28px 28px;
+      display: flex; align-items: center;
+      padding: 100px 6% 80px;
+      position: relative; overflow: hidden;
+    }
+    .hero-inner { max-width: 780px; }
+
+    .label {
+      display: inline-block;
+      font-size: 0.7rem; font-weight: 700; letter-spacing: 2.5px;
+      text-transform: uppercase; color: var(--saffron);
+      margin-bottom: 1.2rem;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.6rem, 6vw, 5rem);
+      font-weight: 900; line-height: 1.08;
+      color: var(--navy); margin-bottom: 1.4rem;
+    }
+    .hero h1 em { font-style: normal; color: var(--saffron); }
+
+    .hero-sub {
+      font-size: 1.1rem; color: var(--muted);
+      max-width: 540px; margin-bottom: 2.4rem;
+      line-height: 1.75;
+    }
+
+    .btn-row { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+    .btn-fill {
+      display: inline-block;
+      background: var(--saffron); color: var(--white);
+      padding: .85rem 2rem; border-radius: 50px;
+      font-weight: 700; font-size: .95rem;
+      text-decoration: none; transition: opacity .2s, transform .2s;
+    }
+    .btn-fill:hover { opacity: .88; transform: translateY(-2px); }
+
+    .btn-outline {
+      display: inline-block;
+      background: transparent; color: var(--navy);
+      padding: .85rem 2rem; border-radius: 50px;
+      font-weight: 600; font-size: .95rem;
+      text-decoration: none; border: 1.5px solid var(--navy);
+      transition: background .2s, color .2s, transform .2s;
+    }
+    .btn-outline:hover {
+      background: var(--navy); color: var(--white);
+      transform: translateY(-2px);
+    }
+
+    .hero-stats {
+      display: flex; gap: 3rem; margin-top: 3.5rem;
+      flex-wrap: wrap;
+    }
+    .stat-num {
+      font-size: 2rem; font-weight: 900; color: var(--saffron);
+      line-height: 1;
+    }
+    .stat-lbl {
+      font-size: 0.75rem; color: var(--muted);
+      text-transform: uppercase; letter-spacing: 1px;
+      margin-top: .15rem;
+    }
+
+    /* ─── SECTION WRAPPER ─── */
+    .section { padding: 96px 6%; }
+    .section.white { background: var(--white); }
+    .section.cream { background: var(--cream); }
+    .section.navy  { background: var(--navy); }
+
+    .section-head { margin-bottom: 3.5rem; }
+    .section-head h2 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 900; line-height: 1.15;
+      color: var(--navy); margin-top: .5rem;
+    }
+    .section-head.light h2 { color: var(--white); }
+    .section-head.light .label { color: #f0a060; }
+    .section-head p {
+      font-size: 1rem; color: var(--muted);
+      max-width: 560px; margin-top: .75rem;
+    }
+    .section-head.light p { color: rgba(255,255,255,.6); }
+
+    /* ─── MENTOR STRIP ─── */
+    .strip-wrap { overflow: hidden; padding: 36px 0; background: var(--white); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .strip-track {
+      display: flex; gap: 1.5rem;
+      width: max-content;
+      animation: ticker 22s linear infinite;
+    }
+    .strip-wrap:hover .strip-track { animation-play-state: paused; }
+    @keyframes ticker {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+    .strip-card {
+      display: flex; align-items: center; gap: .85rem;
+      background: var(--cream); border: 1px solid var(--border);
+      border-radius: 50px; padding: .65rem 1.25rem .65rem .65rem;
+      white-space: nowrap; flex-shrink: 0;
+    }
+    .strip-avatar {
+      width: 40px; height: 40px; border-radius: 50%;
+      background: var(--navy); display: flex; align-items: center;
+      justify-content: center; font-size: .85rem; font-weight: 800;
+      color: var(--saffron); flex-shrink: 0;
+    }
+    .strip-name { font-size: .85rem; font-weight: 700; color: var(--navy); }
+    .strip-tag  { font-size: .72rem; color: var(--muted); }
+
+    /* ─── STREAMS ─── */
+    .streams-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;
+    }
+    .stream-card {
+      border-radius: 20px; padding: 2.5rem;
+      border: 1.5px solid var(--border);
+      transition: transform .25s, box-shadow .25s;
+    }
+    .stream-card:hover { transform: translateY(-6px); box-shadow: 0 20px 40px rgba(13,27,42,.08); }
+    .stream-card.blue  { background: var(--blue-pale); }
+    .stream-card.peach { background: var(--peach-pale); }
+
+    .stream-icon { font-size: 2.5rem; margin-bottom: 1.2rem; }
+    .stream-card h3 {
+      font-size: 1.5rem; font-weight: 800; color: var(--navy);
+      margin-bottom: .6rem;
+    }
+    .stream-card > p { font-size: .95rem; color: var(--muted); margin-bottom: 1.5rem; }
+    .stream-list { list-style: none; display: flex; flex-direction: column; gap: .5rem; margin-bottom: 1.8rem; }
+    .stream-list li { font-size: .88rem; color: var(--text); display: flex; gap: .7rem; align-items: flex-start; }
+    .stream-list li::before { content: '→'; color: var(--saffron); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+    .stream-pill {
+      display: inline-block; background: var(--navy);
+      color: var(--saffron); font-size: .72rem; font-weight: 700;
+      padding: .3rem 1rem; border-radius: 50px;
+      letter-spacing: .5px;
+    }
+
+    /* ─── PSYCHOMETRIC ─── */
+    .psych-grid {
+      display: grid; grid-template-columns: repeat(3,1fr); gap: 1rem;
+    }
+    .psych-tile {
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: 16px; padding: 1.5rem;
+      transition: border-color .2s, transform .2s;
+    }
+    .psych-tile:hover { border-color: var(--saffron); transform: translateY(-4px); }
+    .psych-tile .t-icon { font-size: 1.8rem; margin-bottom: .75rem; }
+    .psych-tile h4 { font-size: .95rem; font-weight: 700; color: var(--navy); margin-bottom: .35rem; }
+    .psych-tile p  { font-size: .82rem; color: var(--muted); line-height: 1.6; }
+
+    /* ─── HOW IT WORKS ─── */
+    .how-layout {
+      display: grid; grid-template-columns: 1fr 1.4fr; gap: 4rem; align-items: start;
+    }
+    .how-cta-box {
+      background: var(--saffron-light);
+      border: 1.5px solid rgba(224,122,47,.3);
+      border-radius: 20px; padding: 2rem;
+      position: sticky; top: 88px;
+    }
+    .how-cta-box p { font-size: 1rem; color: var(--muted); margin-bottom: .5rem; }
+    .how-cta-box strong {
+      display: block; font-size: 2rem; font-weight: 900;
+      color: var(--saffron); margin-bottom: 1.5rem; line-height: 1.1;
+    }
+
+    .steps-column { position: relative; display: flex; flex-direction: column; gap: 0; }
+
+    .step-item {
+      display: grid; grid-template-columns: 56px 1fr; gap: 1.5rem;
+      align-items: flex-start; position: relative; padding-bottom: 2.5rem;
+    }
+    .step-item:last-child { padding-bottom: 0; }
+
+    .step-left { display: flex; flex-direction: column; align-items: center; }
+    .step-num {
+      width: 52px; height: 52px; border-radius: 50%;
+      background: var(--navy); color: var(--saffron);
+      font-size: .8rem; font-weight: 900; letter-spacing: 1px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; position: relative; z-index: 1;
+    }
+    .step-line {
+      width: 2px; flex: 1; min-height: 40px;
+      background: repeating-linear-gradient(
+        to bottom, var(--saffron) 0, var(--saffron) 6px,
+        transparent 6px, transparent 14px
+      );
+      margin-top: 4px;
+    }
+    .step-item:last-child .step-line { display: none; }
+
+    .step-body { padding-top: .6rem; }
+    .step-body h4 { font-size: 1.1rem; font-weight: 800; color: var(--navy); margin-bottom: .4rem; }
+    .step-body p  { font-size: .9rem; color: var(--muted); }
+
+    /* ─── TEAM ─── */
+    .team-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; }
+    .mentor-card {
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: 20px; padding: 2rem; text-align: center;
+      transition: transform .25s, box-shadow .25s;
+    }
+    .mentor-card:hover { transform: translateY(-5px); box-shadow: 0 16px 40px rgba(13,27,42,.08); }
+    .mentor-avatar {
+      width: 80px; height: 80px; border-radius: 50%;
+      background: var(--navy);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem; font-weight: 900; color: var(--saffron);
+      margin: 0 auto 1.2rem;
+    }
+    .mentor-card h3 { font-size: 1.05rem; font-weight: 800; color: var(--navy); margin-bottom: .25rem; }
+    .mentor-role  { font-size: .75rem; font-weight: 700; color: var(--saffron); text-transform: uppercase; letter-spacing: .8px; margin-bottom: .6rem; }
+    .mentor-bio   { font-size: .85rem; color: var(--muted); line-height: 1.65; margin-bottom: 1rem; }
+    .mentor-badge {
+      display: inline-block; background: var(--cream);
+      border: 1px solid var(--border); border-radius: 50px;
+      font-size: .72rem; font-weight: 700; color: var(--navy);
+      padding: .25rem .85rem;
+    }
+
+    /* ─── TESTIMONIALS ─── */
+    .testi-wrap { overflow: hidden; padding: .5rem 0; }
+    .testi-track {
+      display: flex; gap: 1.5rem;
+      width: max-content;
+      animation: ticker2 40s linear infinite;
+    }
+    .testi-wrap:hover .testi-track { animation-play-state: paused; }
+    @keyframes ticker2 {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+    .testi-card {
+      width: 340px; flex-shrink: 0;
+      background: var(--cream); border: 1px solid var(--border);
+      border-radius: 16px; padding: 1.5rem;
+      border-top: 4px solid var(--saffron);
+    }
+    .testi-quote {
+      font-size: .88rem; color: var(--text);
+      font-style: italic; line-height: 1.75;
+      margin-bottom: 1.1rem;
+    }
+    .testi-author { font-size: .82rem; font-weight: 700; color: var(--navy); }
+    .testi-detail { font-size: .75rem; color: var(--muted); }
+    .testi-stars  { color: var(--saffron); font-size: .85rem; margin-bottom: .75rem; }
+
+    /* ─── PRICING ─── */
+    .pricing-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; max-width: 840px; margin: 0 auto; }
+    .pricing-card {
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 20px; padding: 2.5rem;
+      position: relative;
+    }
+    .pricing-card.featured {
+      background: rgba(255,255,255,.1);
+      border-color: rgba(224,122,47,.5);
+    }
+    .best-tag {
+      position: absolute; top: -14px; right: 1.5rem;
+      background: var(--saffron); color: var(--white);
+      font-size: .68rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: .5px; padding: .3rem .9rem; border-radius: 50px;
+    }
+    .pricing-lbl { font-size: .7rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #f0a060; margin-bottom: .4rem; }
+    .pricing-card h3 { font-size: 1.2rem; font-weight: 800; color: var(--white); margin-bottom: .2rem; }
+    .price-num { font-size: 3.2rem; font-weight: 900; color: var(--saffron); line-height: 1; margin: 1rem 0 .3rem; }
+    .price-note { font-size: .8rem; color: rgba(255,255,255,.45); margin-bottom: 1.5rem; }
+    .pricing-feats { list-style: none; display: flex; flex-direction: column; gap: .5rem; margin-bottom: 2rem; }
+    .pricing-feats li { font-size: .88rem; color: rgba(255,255,255,.75); display: flex; gap: .6rem; }
+    .pricing-feats li::before { content: '✓'; color: var(--saffron); font-weight: 700; }
+    .pricing-btn {
+      display: block; text-align: center;
+      background: var(--saffron); color: var(--white);
+      padding: .9rem; border-radius: 50px; font-weight: 700;
+      font-size: .9rem; text-decoration: none; transition: opacity .2s;
+    }
+    .pricing-btn:hover { opacity: .85; }
+
+    /* ─── FAQ ─── */
+    .faq-list { display: flex; flex-direction: column; gap: .75rem; max-width: 760px; }
+    .faq-item {
+      border: 1px solid var(--border); border-radius: 14px;
+      background: var(--white); overflow: hidden;
+    }
+    .faq-q {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.2rem 1.5rem; cursor: pointer;
+      font-size: .95rem; font-weight: 700; color: var(--navy);
+      user-select: none;
+    }
+    .faq-q .faq-icon {
+      width: 28px; height: 28px; border-radius: 50%;
+      background: var(--cream); flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem; transition: transform .3s; color: var(--saffron);
+    }
+    .faq-item.open .faq-icon { transform: rotate(45deg); }
+    .faq-a {
+      max-height: 0; overflow: hidden;
+      transition: max-height .35s ease, padding .35s ease;
+    }
+    .faq-item.open .faq-a { max-height: 400px; }
+    .faq-a-inner { padding: 0 1.5rem 1.3rem; font-size: .9rem; color: var(--muted); line-height: 1.75; }
+
+    /* ─── CONTACT ─── */
+    .contact-layout { display: grid; grid-template-columns: 1fr 1.4fr; gap: 4rem; align-items: start; }
+    .contact-points { display: flex; flex-direction: column; gap: 1.5rem; }
+    .c-point { display: flex; gap: 1rem; align-items: flex-start; }
+    .c-icon {
+      width: 42px; height: 42px; border-radius: 12px;
+      background: var(--saffron-light); border: 1px solid rgba(224,122,47,.2);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem; flex-shrink: 0;
+    }
+    .c-point strong { display: block; font-size: .9rem; font-weight: 700; color: var(--navy); margin-bottom: .15rem; }
+    .c-point p { font-size: .85rem; color: var(--muted); }
+
+    form { display: flex; flex-direction: column; gap: .85rem; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: .85rem; }
+    input, select, textarea {
+      width: 100%; padding: .85rem 1rem;
+      background: var(--white); border: 1.5px solid var(--border);
+      border-radius: 10px; font-family: 'Poppins', sans-serif;
+      font-size: .88rem; color: var(--navy); outline: none;
+      transition: border-color .2s;
+      appearance: none;
+    }
+    input:focus, select:focus, textarea:focus { border-color: var(--saffron); }
+    input::placeholder, textarea::placeholder { color: #aab0ba; }
+    textarea { resize: vertical; min-height: 110px; }
+    .submit-btn {
+      background: var(--saffron); color: var(--white);
+      border: none; padding: 1rem;
+      border-radius: 50px; font-family: 'Poppins', sans-serif;
+      font-size: 1rem; font-weight: 700; cursor: pointer;
+      transition: opacity .2s, transform .2s;
+    }
+    .submit-btn:hover { opacity: .88; transform: translateY(-2px); }
+    .form-ok { display: none; text-align: center; font-size: .88rem; color: var(--saffron); margin-top: .5rem; font-weight: 600; }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--navy); padding: 2rem 6%;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 1rem;
+    }
+    .foot-logo { font-size: 1.1rem; font-weight: 900; letter-spacing: 3px; color: var(--white); }
+    .foot-logo .logo-a { color: var(--saffron); }
+    .foot-logo .logo-z { color: #5aabdf; }
+    footer p { font-size: .78rem; color: rgba(255,255,255,.35); }
+    .foot-links { display: flex; gap: 1.5rem; list-style: none; }
+    .foot-links a { font-size: .78rem; color: rgba(255,255,255,.4); text-decoration: none; transition: color .2s; }
+    .foot-links a:hover { color: var(--saffron); }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 900px) {
+      .streams-grid, .team-grid, .pricing-grid, .how-layout, .contact-layout { grid-template-columns: 1fr; }
+      .psych-grid { grid-template-columns: 1fr 1fr; }
+      .how-cta-box { position: static; }
+      .nav-links { display: none; }
+    }
+    @media (max-width: 560px) {
+      .psych-grid { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      nav { padding: 0 5%; }
+      .section { padding: 64px 5%; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ════════ NAV ════════ -->
+<nav>
+  <a class="nav-logo" href="#home"><span class="logo-a">A</span>CTUAL<span style="color:inherit">Y</span><span class="logo-z">Z</span></a>
+  <ul class="nav-links">
+    <li><a href="#streams">What We Offer</a></li>
+    <li><a href="#how">How It Works</a></li>
+    <li><a href="#team">Mentors</a></li>
+    <li><a href="#faq">FAQ</a></li>
+  </ul>
+  <a class="nav-cta" href="#contact">Book a Session</a>
+</nav>
+
+<!-- ════════ HERO ════════ -->
+<section class="hero" id="home">
+  <div class="hero-inner">
+    <span class="label">Personalised Mentorship · Made Accessible</span>
+    <h1>The right guidance<br><em>changes everything.</em></h1>
+    <p class="hero-sub">India's top exam clearers — IAS, IIT, IRS — mentor you one-on-one. No batches. No generic advice. Just a strategy built entirely around you.</p>
+    <div class="btn-row">
+      <a class="btn-fill"    href="#contact">Book Your First Session</a>
+      <a class="btn-outline" href="#streams">See What We Offer</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="stat-num">1-on-1</div>
+        <div class="stat-lbl">Sessions Only</div>
+      </div>
+      <div>
+        <div class="stat-num">3</div>
+        <div class="stat-lbl">Expert Mentors</div>
+      </div>
+      <div>
+        <div class="stat-num">₹300</div>
+        <div class="stat-lbl">Starting Price</div>
+      </div>
+      <div>
+        <div class="stat-num">All India</div>
+        <div class="stat-lbl">100% Online</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ MENTOR STRIP ════════ -->
+<div class="strip-wrap">
+  <div class="strip-track" id="strip">
+    <!-- set A -->
+    <div class="strip-card"><div class="strip-avatar">AV</div><div><div class="strip-name">Aeshala Vamshi Krishna</div><div class="strip-tag">IIT Bombay · CSE 2016</div></div></div>
+    <div class="strip-card"><div class="strip-avatar">M</div><div><div class="strip-name">Madhubala</div><div class="strip-tag">IIT Roorkee · Ex-Toppers Academy</div></div></div>
+    <div class="strip-card"><div class="strip-avatar">DG</div><div><div class="strip-name">Dhiraj Ganji</div><div class="strip-tag">Ex-IRS Officer · Startup Leader</div></div></div>
+    <div class="strip-card" style="background:var(--saffron-light); border-color:rgba(224,122,47,.25);"><div style="font-size:.85rem; font-weight:700; color:var(--saffron);">🎯 All exams · All India · 100% Online</div></div>
+    <div class="strip-card"><div class="strip-avatar">AV</div><div><div class="strip-name">UPSC Strategy</div><div class="strip-tag">Answer writing · Interview prep</div></div></div>
+    <div class="strip-card"><div class="strip-avatar">M</div><div><div class="strip-name">JEE Mentorship</div><div class="strip-tag">Problem solving · Time management</div></div></div>
+    <div class="strip-card"><div class="strip-avatar">DG</div><div><div class="strip-name">CAT Preparation</div><div class="strip-tag">Strategy · Mock analysis</div></div></div>
+    <div class="strip-card" style="background:var(--saffron-light); border-color:rgba(224,122,47,.25);"><div style="font-size:.85rem; font-weight:700; color:var(--saffron);">🧠 Career Discovery · Psychometric Test</div></div>
+    <!-- set B (duplicate for seamless loop) -->
+    <div class="strip-card"><div class="strip-avatar">AV</div><div><div class="strip-name">Aeshala Vamshi Krishna</div><div class="strip-tag">IIT Bombay · CSE 2016</div></div></div>
+    <div class="strip-card"><div class="strip-avatar">M</div><div><div class="strip-name">Madhubala</div><div class="strip-tag">IIT Roorkee · Ex-Toppers Academy</div></div></div>
+    <div class="strip-card"><div class="strip-avatar">DG</div><div><div class="strip-name">Dhiraj Ganji</div><div class="strip-tag">Ex-IRS Officer · Startup Leader</div></div></div>
+    <div class="strip-card" style="background:var(--saffron-light); border-color:rgba(224,122,47,.25);"><div style="font-size:.85rem; font-weight:700; color:var(--saffron);">🎯 All exams · All India · 100% Online</div></div>
+    <div class="strip-card"><div class="strip-avatar">AV</div><div><div class="strip-name">UPSC Strategy</div><div class="strip-tag">Answer writing · Interview prep</div></div></div>
+    <div class="strip-card"><div class="strip-avatar">M</div><div><div class="strip-name">JEE Mentorship</div><div class="strip-tag">Problem solving · Time management</div></div></div>
+    <div class="strip-card"><div class="strip-avatar">DG</div><div><div class="strip-name">CAT Preparation</div><div class="strip-tag">Strategy · Mock analysis</div></div></div>
+    <div class="strip-card" style="background:var(--saffron-light); border-color:rgba(224,122,47,.25);"><div style="font-size:.85rem; font-weight:700; color:var(--saffron);">🧠 Career Discovery · Psychometric Test</div></div>
+  </div>
+</div>
+
+<!-- ════════ STREAMS ════════ -->
+<section class="section white" id="streams">
+  <div class="section-head">
+    <span class="label">What We Offer</span>
+    <h2>Two streams,<br>one goal — your success.</h2>
+    <p>Whether your child is still discovering their path or preparing for India's toughest exams, we have a stream built for exactly where they are.</p>
+  </div>
+  <div class="streams-grid">
+    <div class="stream-card blue">
+      <div class="stream-icon">🧭</div>
+      <h3>Career Discovery</h3>
+      <p>For students below Class 10 — before they choose a stream, help them understand who they truly are. India's most thorough psychometric assessment, followed by one-on-one mentoring with you and your parents.</p>
+      <ul class="stream-list">
+        <li>Corporate-grade psychometric test covering talent, learning style & aptitude</li>
+        <li>A separate test for parents — to surface their hopes and align them with your child's strengths</li>
+        <li>Career shortlist from hundreds of options, discussed in a 3-way session</li>
+        <li>Ongoing one-on-one mentorship to keep growing in the right direction</li>
+      </ul>
+      <span class="stream-pill">Below Class 10</span>
+    </div>
+    <div class="stream-card peach">
+      <div class="stream-icon">🎯</div>
+      <h3>Exam Strategy</h3>
+      <p>Already targeting JEE, NEET, UPSC or CAT? Stop studying harder — start studying smarter. We diagnose exactly where you're losing marks and build a strategy around your deadline.</p>
+      <ul class="stream-list">
+        <li>Diagnostic assessment to pinpoint your exact weak areas</li>
+        <li>Personalised study plan built around the time you have left</li>
+        <li>Regular one-on-one sessions with course correction as you go</li>
+        <li>Mental wellness support through our on-board psychiatrist</li>
+      </ul>
+      <span class="stream-pill">JEE · NEET · UPSC · CAT</span>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ PSYCHOMETRIC ════════ -->
+<section class="section cream" id="psychometric">
+  <div class="section-head">
+    <span class="label">Our Flagship Assessment</span>
+    <h2>The Actualyz<br>Psychometric Test.</h2>
+    <p>The same science Fortune 500 companies use to identify future leaders — now applied to help your child find their right path before they choose a stream.</p>
+  </div>
+  <div class="psych-grid">
+    <div class="psych-tile"><div class="t-icon">💡</div><h4>Natural Talent</h4><p>Uncover the core differentiator your child is naturally wired to excel at.</p></div>
+    <div class="psych-tile"><div class="t-icon">🤝</div><h4>Social & Leadership Skills</h4><p>Assess interpersonal strengths, communication and leadership potential.</p></div>
+    <div class="psych-tile"><div class="t-icon">🧮</div><h4>Maths & Logical Reasoning</h4><p>Measure analytical thinking and quantitative aptitude objectively.</p></div>
+    <div class="psych-tile"><div class="t-icon">📖</div><h4>Language & Expression</h4><p>Evaluate verbal ability, comprehension and clarity of communication.</p></div>
+    <div class="psych-tile"><div class="t-icon">🔬</div><h4>Scientific Aptitude</h4><p>Gauge interest and ability across physics, chemistry, biology and sciences.</p></div>
+    <div class="psych-tile"><div class="t-icon">👁️</div><h4>Learning Style</h4><p>Visual, auditory or kinesthetic — know how your child learns best.</p></div>
+    <div class="psych-tile"><div class="t-icon">🌟</div><h4>Natural Ambitions</h4><p>Discover what the child truly wants — independent of external pressure.</p></div>
+    <div class="psych-tile"><div class="t-icon">👨‍👩‍👧</div><h4>Parent Aspirations Test</h4><p>A separate test for parents to surface hopes and align them with strengths.</p></div>
+    <div class="psych-tile"><div class="t-icon">🗺️</div><h4>Career Shortlisting</h4><p>From hundreds of careers, we identify the best-fit options for your family discussion.</p></div>
+  </div>
+</section>
+
+<!-- ════════ HOW IT WORKS ════════ -->
+<section class="section white" id="how">
+  <div class="how-layout">
+    <div>
+      <div class="section-head" style="margin-bottom:2rem;">
+        <span class="label">The Process</span>
+        <h2>How does<br>this work?</h2>
+      </div>
+      <div class="how-cta-box">
+        <p>Book your first session and hear back in</p>
+        <strong>24 hours.</strong>
+        <a class="btn-fill" href="#contact" style="display:block; text-align:center;">Apply now →</a>
+      </div>
+    </div>
+    <div class="steps-column">
+      <div class="step-item">
+        <div class="step-left">
+          <div class="step-num">01</div>
+          <div class="step-line"></div>
+        </div>
+        <div class="step-body">
+          <h4>Book a free call</h4>
+          <p>Fill our short form below. We reach out within 24 hours to understand your goals and match you with the right mentor.</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-left">
+          <div class="step-num">02</div>
+          <div class="step-line"></div>
+        </div>
+        <div class="step-body">
+          <h4>Take the assessment</h4>
+          <p>Depending on your stream — the full psychometric test for Career Discovery, or a targeted diagnostic test for Exam Strategy.</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-left">
+          <div class="step-num">03</div>
+          <div class="step-line"></div>
+        </div>
+        <div class="step-body">
+          <h4>Get your personal plan</h4>
+          <p>Your mentor builds a strategy tailored specifically to your results, goals and timeline — not a generic syllabus.</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-left">
+          <div class="step-num">04</div>
+          <div class="step-line"></div>
+        </div>
+        <div class="step-body">
+          <h4>Ongoing mentorship</h4>
+          <p>Regular one-on-one sessions, continuous feedback, and the plan adjusts as you grow. You're never alone in the process.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ TEAM ════════ -->
+<section class="section cream" id="team">
+  <div class="section-head">
+    <span class="label">The Mentors</span>
+    <h2>Learn from those<br>who've done it.</h2>
+    <p>Our mentors haven't just studied these exams — they've cleared them at the highest level. Every session is guided by first-hand experience.</p>
+  </div>
+  <div class="team-grid">
+
+    <div class="mentor-card">
+      <div class="mentor-avatar">AV</div>
+      <h3>Aeshala Vamshi Krishna</h3>
+      <div class="mentor-role">Guidance Expert · UPSC</div>
+      <p class="mentor-bio">B.Tech from IIT Bombay (2010–14) and a serving Civil Servant who cleared the UPSC Civil Services Examination in 2016. One of very few people in India who has navigated both the IIT system and the civil services — making his guidance uniquely grounded in real experience at the highest level.</p>
+      <span class="mentor-badge">IIT Bombay · CSE 2016</span>
+    </div>
+
+    <div class="mentor-card" style="border-color: var(--saffron); border-width: 2px;">
+      <div class="mentor-avatar" style="background: var(--saffron);">M</div>
+      <h3>Madhubala</h3>
+      <div class="mentor-role">Founder · JEE & Career Mentor</div>
+      <p class="mentor-bio">B.Tech from IIT Roorkee (2013–17), ex-faculty at Toppers Academy, and ex-founder of Cogniron — a software startup. Madhubala has been on both sides of the exam hall and the boardroom, giving her a rare ability to see the full picture: what it takes to crack a competitive exam and what actually matters beyond it.</p>
+      <span class="mentor-badge">IIT Roorkee · Ex-Toppers Academy</span>
+    </div>
+
+    <div class="mentor-card" style="background: var(--cream); border-style: dashed; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; min-height: 260px;">
+      <div style="font-size: 2rem; margin-bottom: 1rem;">🔜</div>
+      <h3 style="font-size: 1rem; color: var(--muted);">More Mentors Coming Soon</h3>
+      <p class="mentor-bio" style="margin-top: .5rem;">We are onboarding more experts across CAT, NEET and other domains. Watch this space.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ════════ TESTIMONIALS ════════ -->
+<section class="section white" id="testimonials">
+  <div class="section-head">
+    <span class="label">Hear From Students Like You</span>
+    <h2>What our students say.</h2>
+    <p>Real results from real students. Verified testimonials coming once we have consent from each student.</p>
+  </div>
+  <div class="testi-wrap">
+    <div class="testi-track">
+      <!-- Set A -->
+      <div class="testi-card"><div class="testi-stars">★★★★★</div><p class="testi-quote">"The one-on-one approach made all the difference. My mentor found exactly where I was losing marks in UPSC Prelims. I finally had a strategy, not just a syllabus."</p><div class="testi-author">UPSC Aspirant</div><div class="testi-detail">Delhi · 2025</div></div>
+      <div class="testi-card"><div class="testi-stars">★★★★★</div><p class="testi-quote">"The psychometric test was an eye-opener for our whole family. We had assumed our daughter would go into medicine. The results showed something completely different — and she's thriving."</p><div class="testi-author">Parent</div><div class="testi-detail">Hyderabad · 2025</div></div>
+      <div class="testi-card"><div class="testi-stars">★★★★★</div><p class="testi-quote">"I was 6 months from CAT with no clear plan. After one session I had a week-by-week strategy. The personalised feedback after every mock is something no coaching class gave me."</p><div class="testi-author">CAT Aspirant</div><div class="testi-detail">Bengaluru · 2025</div></div>
+      <div class="testi-card"><div class="testi-stars">★★★★★</div><p class="testi-quote">"My mentor didn't just give me notes — they told me what to skip. That alone saved me two months of wasted effort before JEE. I wish I'd found Actualyz a year earlier."</p><div class="testi-author">JEE Aspirant</div><div class="testi-detail">Pune · 2025</div></div>
+      <div class="testi-card"><div class="testi-stars">★★★★★</div><p class="testi-quote">"As a parent I was lost. The 3-way session — mentor, my son and me — aligned all of us for the first time. Now we pull in the same direction instead of fighting over stream choice."</p><div class="testi-author">Parent</div><div class="testi-detail">Chennai · 2025</div></div>
+      <!-- Set B (duplicate) -->
+      <div class="testi-card"><div class="testi-stars">★★★★★</div><p class="testi-quote">"The one-on-one approach made all the difference. My mentor found exactly where I was losing marks in UPSC Prelims. I finally had a strategy, not just a syllabus."</p><div class="testi-author">UPSC Aspirant</div><div class="testi-detail">Delhi · 2025</div></div>
+      <div class="testi-card"><div class="testi-stars">★★★★★</div><p class="testi-quote">"The psychometric test was an eye-opener for our whole family. We had assumed our daughter would go into medicine. The results showed something completely different — and she's thriving."</p><div class="testi-author">Parent</div><div class="testi-detail">Hyderabad · 2025</div></div>
+      <div class="testi-card"><div class="testi-stars">★★★★★</div><p class="testi-quote">"I was 6 months from CAT with no clear plan. After one session I had a week-by-week strategy. The personalised feedback after every mock is something no coaching class gave me."</p><div class="testi-author">CAT Aspirant</div><div class="testi-detail">Bengaluru · 2025</div></div>
+      <div class="testi-card"><div class="testi-stars">★★★★★</div><p class="testi-quote">"My mentor didn't just give me notes — they told me what to skip. That alone saved me two months of wasted effort before JEE. I wish I'd found Actualyz a year earlier."</p><div class="testi-author">JEE Aspirant</div><div class="testi-detail">Pune · 2025</div></div>
+      <div class="testi-card"><div class="testi-stars">★★★★★</div><p class="testi-quote">"As a parent I was lost. The 3-way session — mentor, my son and me — aligned all of us for the first time. Now we pull in the same direction instead of fighting over stream choice."</p><div class="testi-author">Parent</div><div class="testi-detail">Chennai · 2025</div></div>
+    </div>
+  </div>
+  <p style="text-align:center; margin-top:1.5rem; font-size:.8rem; color:var(--muted); font-style:italic;">* Representative testimonials. Verified student stories will be added with consent.</p>
+</section>
+
+<!-- ════════ PRICING ════════ -->
+<section class="section navy" id="pricing">
+  <div class="section-head light">
+    <span class="label">Pricing</span>
+    <h2>Transparent,<br>affordable pricing.</h2>
+    <p>World-class mentorship shouldn't be a luxury. We've priced it so every serious student in India can access it.</p>
+  </div>
+  <div class="pricing-grid">
+    <div class="pricing-card">
+      <div class="pricing-lbl">Get Started</div>
+      <h3>Introductory Sessions</h3>
+      <div class="price-num">₹300</div>
+      <div class="price-note">per session · first 3 sessions</div>
+      <ul class="pricing-feats">
+        <li>1-on-1 session with your mentor</li>
+        <li>Psychometric or diagnostic assessment</li>
+        <li>Personalised feedback after each session</li>
+        <li>Session notes shared after every call</li>
+      </ul>
+      <a class="pricing-btn" href="#contact">Book Now</a>
+    </div>
+    <div class="pricing-card featured">
+      <div class="best-tag">Most Popular</div>
+      <div class="pricing-lbl">Ongoing Mentorship</div>
+      <h3>Regular Sessions</h3>
+      <div class="price-num">₹500</div>
+      <div class="price-note">per session · after first 3</div>
+      <ul class="pricing-feats">
+        <li>Everything in introductory</li>
+        <li>Progress tracking across sessions</li>
+        <li>Study plan updated as exam approaches</li>
+        <li>Mental wellness support on board</li>
+        <li>Parent updates for Career Discovery stream</li>
+      </ul>
+      <a class="pricing-btn" href="#contact">Get Started</a>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ FAQ ════════ -->
+<section class="section cream" id="faq">
+  <div class="section-head">
+    <span class="label">Questions</span>
+    <h2>Frequently asked<br>questions.</h2>
+  </div>
+  <div class="faq-list">
+    <div class="faq-item">
+      <div class="faq-q">How is Actualyz different from a coaching centre?<span class="faq-icon">+</span></div>
+      <div class="faq-a"><div class="faq-a-inner">Coaching centres run large batches with the same content for everyone. At Actualyz, every session is 1-on-1. Your mentor builds a plan around your specific test scores, weak areas and available time — not a generic syllabus shared with 200 other students.</div></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Who are the mentors?<span class="faq-icon">+</span></div>
+      <div class="faq-a"><div class="faq-a-inner">Our mentors have personally cleared India's hardest exams — a Civil Servant (CSE 2016), an IIT Roorkee graduate, and a former IRS Officer. They don't just know the syllabus; they know what it takes to actually clear the exam at the highest level.</div></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">My child is in Class 8. Which stream is right for them?<span class="faq-icon">+</span></div>
+      <div class="faq-a"><div class="faq-a-inner">The Career Discovery stream is designed exactly for this. Students below Class 10 haven't chosen a stream yet — and this is the ideal time to do the psychometric test, understand your child's natural strengths, and make an informed choice rather than defaulting to what everyone else is doing.</div></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">How long is a session, and how often do we meet?<span class="faq-icon">+</span></div>
+      <div class="faq-a"><div class="faq-a-inner">Each session is approximately 45–60 minutes over a video call. Frequency is agreed with your mentor based on your goal and timeline — some students meet weekly, others fortnightly. There is no rigid package forced on you.</div></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">What happens after the first 3 introductory sessions?<span class="faq-icon">+</span></div>
+      <div class="faq-a"><div class="faq-a-inner">After 3 sessions, if you want to continue, sessions move to ₹500 each. There's no compulsion to commit upfront — you can pause, continue, or switch mentors. We keep it flexible because every student's journey is different.</div></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Is it available anywhere in India?<span class="faq-icon">+</span></div>
+      <div class="faq-a"><div class="faq-a-inner">Yes — 100% online. All sessions happen over video call, so it doesn't matter if you're in a metro or a small town. As long as you have a stable internet connection, you can access the same quality of mentorship as anyone else.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ CONTACT ════════ -->
+<section class="section white" id="contact">
+  <div class="section-head">
+    <span class="label">Get In Touch</span>
+    <h2>Book your<br>first session.</h2>
+    <p>Fill in the form and we'll reach out within 24 hours to schedule your first session.</p>
+  </div>
+  <div class="contact-layout">
+    <div class="contact-points">
+      <div class="c-point">
+        <div class="c-icon">📍</div>
+        <div><strong>100% Online</strong><p>Sessions over video call — available anywhere across India.</p></div>
+      </div>
+      <div class="c-point">
+        <div class="c-icon">⚡</div>
+        <div><strong>24-Hour Response</strong><p>We respond to every enquiry within one business day, guaranteed.</p></div>
+      </div>
+      <div class="c-point">
+        <div class="c-icon">🔓</div>
+        <div><strong>No Commitment</strong><p>Start with just one session. No packages forced on you upfront.</p></div>
+      </div>
+      <div class="c-point">
+        <div class="c-icon">📧</div>
+        <div><strong>Email Us</strong><p>madhu@actualyz.com</p></div>
+      </div>
+    </div>
+    <form onsubmit="submitForm(event)">
+      <div class="form-row">
+        <input type="text"  placeholder="Your Name *" required />
+        <input type="tel"   placeholder="Phone Number *" required />
+      </div>
+      <input type="email" placeholder="Email Address *" required />
+      <select required>
+        <option value="" disabled selected>I am a… *</option>
+        <option>Student</option>
+        <option>Parent</option>
+      </select>
+      <select required>
+        <option value="" disabled selected>I'm interested in… *</option>
+        <option>Career Discovery (below Class 10)</option>
+        <option>JEE Preparation</option>
+        <option>NEET Preparation</option>
+        <option>UPSC Preparation</option>
+        <option>CAT Preparation</option>
+        <option>Other / Not Sure Yet</option>
+      </select>
+      <textarea placeholder="Tell us a little about where you are right now — exam date, class, or anything else that helps us prepare for the call."></textarea>
+      <button type="submit" class="submit-btn">Request a Callback →</button>
+      <p class="form-ok" id="form-ok">✓ Thank you! We'll reach out within 24 hours.</p>
+    </form>
+  </div>
+</section>
+
+<!-- ════════ FOOTER ════════ -->
+<footer>
+  <div class="foot-logo"><span class="logo-a">A</span>CTUAL<span style="color:inherit">Y</span><span class="logo-z">Z</span></div>
+  <p>© 2026 Actualyz. Personalised Mentorship, Made Accessible.</p>
+  <ul class="foot-links">
+    <li><a href="#streams">Services</a></li>
+    <li><a href="#team">Team</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#faq">FAQ</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</footer>
+
+<script>
+  function submitForm(e) {
+    e.preventDefault();
+    e.target.reset();
+    document.getElementById('form-ok').style.display = 'block';
+  }
+
+  document.querySelectorAll('.faq-q').forEach(q => {
+    q.addEventListener('click', () => {
+      const item = q.closest('.faq-item');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    });
+  });
+</script>
+</body>
+</html>
