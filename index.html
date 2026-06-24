@@ -1044,9 +1044,9 @@
         <div><strong>Email Us</strong><p><a href="mailto:madhu@actualyz.com" style="color:var(--saffron); text-decoration:none; font-weight:600;">madhu@actualyz.com</a></p></div>
       </div>
     </div>
-    <!-- Form submissions go to madhu@actualyz.com via Formspree.
-         To activate: sign up at formspree.io, create a form for madhu@actualyz.com,
-         then replace YOUR_FORM_ID below with your actual form ID. -->
+    <!-- Form submissions go to madhu@actualyz.com via Formsubmit.co (no signup needed).
+         On the FIRST real submission, Formsubmit sends a one-time verification email
+         to madhu@actualyz.com — click that link to activate, then all enquiries arrive automatically. -->
     <form id="contact-form" onsubmit="submitForm(event)">
       <input type="hidden" name="_subject" value="New Enquiry from Actualyz Website" />
       <div class="form-row">
@@ -1097,9 +1097,9 @@
     if (!isOpen) tile.classList.add('open');
   }
 
-  /* ── Contact form submission ──
-     Replace YOUR_FORM_ID with your Formspree form ID.
-     Get one free at formspree.io using madhu@actualyz.com. */
+  /* ── Contact form submission via Formsubmit.co ──
+     No signup needed — first submission triggers a verification email to madhu@actualyz.com.
+     Click the link in that email once to activate, then all enquiries arrive automatically. */
   async function submitForm(e) {
     e.preventDefault();
     const form = e.target;
@@ -1108,7 +1108,7 @@
     btn.textContent = 'Sending…';
 
     try {
-      const res = await fetch('https://formspree.io/f/YOUR_FORM_ID', {
+      const res = await fetch('https://formsubmit.co/ajax/madhu@actualyz.com', {
         method: 'POST',
         body: new FormData(form),
         headers: { 'Accept': 'application/json' }
