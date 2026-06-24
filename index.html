@@ -144,6 +144,7 @@
       font-weight: 900; line-height: 1.15;
       color: var(--navy); margin-top: .5rem;
     }
+    .section-head h2 em { font-style: normal; color: var(--saffron); }
     .section-head.light h2 { color: var(--white); }
     .section-head.light .label { color: #f0a060; }
     .section-head p {
@@ -208,6 +209,56 @@
       letter-spacing: .5px;
     }
 
+    /* ─── AI PROOFING ─── */
+    .ai-banner {
+      background: linear-gradient(135deg, var(--navy) 0%, #1a3347 100%);
+      border-radius: 24px; padding: 3rem;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 3rem;
+      align-items: center; margin-bottom: 3rem;
+    }
+    .ai-pitch h3 {
+      font-size: 1.9rem; font-weight: 900; color: var(--white);
+      line-height: 1.2; margin-bottom: 1rem;
+    }
+    .ai-pitch p { font-size: .92rem; color: rgba(255,255,255,.68); line-height: 1.8; margin-bottom: .85rem; }
+    .ai-pull {
+      font-style: italic; color: var(--saffron);
+      font-size: .88rem; border-left: 3px solid var(--saffron);
+      padding-left: 1rem; margin-top: .5rem; line-height: 1.7;
+    }
+    .ai-compare-wrap { display: flex; flex-direction: column; gap: .6rem; }
+    .ai-compare-header {
+      display: grid; grid-template-columns: 1fr auto 1fr;
+      gap: .5rem; text-align: center;
+      font-size: .65rem; font-weight: 700; letter-spacing: 1.5px;
+      text-transform: uppercase; color: rgba(255,255,255,.35);
+      margin-bottom: .2rem;
+    }
+    .ai-row {
+      display: grid; grid-template-columns: 1fr auto 1fr;
+      gap: .5rem; align-items: center; font-size: .8rem;
+    }
+    .ai-risk {
+      background: rgba(220,60,60,.15); color: #ff9090;
+      padding: .45rem .8rem; border-radius: 8px;
+      border: 1px solid rgba(220,60,60,.25); text-align: center;
+    }
+    .ai-safe {
+      background: rgba(50,180,90,.12); color: #70d090;
+      padding: .45rem .8rem; border-radius: 8px;
+      border: 1px solid rgba(50,180,90,.2); text-align: center;
+    }
+    .ai-arrow { color: rgba(255,255,255,.25); text-align: center; font-size: .85rem; }
+    .ai-points { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; }
+    .ai-point {
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: 16px; padding: 1.5rem;
+      border-top: 3px solid var(--saffron);
+    }
+    .ai-num { font-size: 2rem; font-weight: 900; color: var(--saffron); line-height: 1; margin-bottom: .5rem; }
+    .ai-point h4 { font-size: 1rem; font-weight: 800; color: var(--navy); margin-bottom: .4rem; }
+    .ai-point p  { font-size: .85rem; color: var(--muted); line-height: 1.65; }
+
     /* ─── PSYCHOMETRIC ─── */
     .psych-grid {
       display: grid; grid-template-columns: repeat(3,1fr); gap: 1rem;
@@ -216,11 +267,55 @@
       background: var(--white); border: 1px solid var(--border);
       border-radius: 16px; padding: 1.5rem;
       transition: border-color .2s, transform .2s;
+      cursor: pointer; user-select: none;
     }
     .psych-tile:hover { border-color: var(--saffron); transform: translateY(-4px); }
-    .psych-tile .t-icon { font-size: 1.8rem; margin-bottom: .75rem; }
-    .psych-tile h4 { font-size: .95rem; font-weight: 700; color: var(--navy); margin-bottom: .35rem; }
-    .psych-tile p  { font-size: .82rem; color: var(--muted); line-height: 1.6; }
+    .psych-tile.open  { border-color: var(--saffron); transform: none; box-shadow: 0 8px 24px rgba(13,27,42,.08); }
+    .tile-head {
+      display: flex; align-items: flex-start; justify-content: space-between;
+      gap: .5rem; margin-bottom: .35rem;
+    }
+    .tile-head-left { display: flex; flex-direction: column; }
+    .psych-tile .t-icon { font-size: 1.8rem; margin-bottom: .5rem; }
+    .psych-tile h4 { font-size: .95rem; font-weight: 700; color: var(--navy); }
+    .tile-chevron {
+      color: var(--saffron); font-size: 1.3rem; font-weight: 700;
+      transition: transform .3s; flex-shrink: 0; line-height: 1;
+      margin-top: .2rem;
+    }
+    .psych-tile.open .tile-chevron { transform: rotate(45deg); }
+    .tile-short { font-size: .82rem; color: var(--muted); line-height: 1.6; }
+    .tile-expand {
+      max-height: 0; overflow: hidden;
+      transition: max-height .38s ease, opacity .3s ease;
+      opacity: 0;
+    }
+    .psych-tile.open .tile-expand { max-height: 400px; opacity: 1; }
+    .tile-expand-inner {
+      margin-top: .9rem; padding-top: .9rem;
+      border-top: 1px solid var(--border);
+      font-size: .82rem; color: var(--muted); line-height: 1.72;
+    }
+    .psych-tile.differentiator {
+      grid-column: 1 / -1;
+      background: linear-gradient(135deg, var(--navy), #1a3347);
+      border-color: transparent; color: var(--white);
+    }
+    .psych-tile.differentiator h4 { color: var(--white); }
+    .psych-tile.differentiator .tile-short { color: rgba(255,255,255,.65); }
+    .psych-tile.differentiator .tile-chevron { color: var(--saffron); }
+    .psych-tile.differentiator .tile-expand-inner {
+      border-top-color: rgba(255,255,255,.15);
+      color: rgba(255,255,255,.72);
+    }
+    .psych-tile.differentiator:hover { transform: translateY(-4px); border-color: var(--saffron); }
+    .psych-tile.differentiator.open  { transform: none; border-color: var(--saffron); }
+    .diff-badge {
+      display: inline-block; background: var(--saffron);
+      color: var(--white); font-size: .6rem; font-weight: 800;
+      letter-spacing: 1.5px; text-transform: uppercase;
+      padding: .2rem .7rem; border-radius: 50px; margin-bottom: .5rem;
+    }
 
     /* ─── HOW IT WORKS ─── */
     .how-layout {
@@ -291,6 +386,10 @@
       border: 1px solid var(--border); border-radius: 50px;
       font-size: .72rem; font-weight: 700; color: var(--navy);
       padding: .25rem .85rem;
+    }
+    .mentor-disclaimer {
+      font-size: .68rem; color: var(--muted); margin-top: .75rem;
+      font-style: italic; line-height: 1.5;
     }
 
     /* ─── TESTIMONIALS ─── */
@@ -414,6 +513,7 @@
     }
     .submit-btn:hover { opacity: .88; transform: translateY(-2px); }
     .form-ok { display: none; text-align: center; font-size: .88rem; color: var(--saffron); margin-top: .5rem; font-weight: 600; }
+    .form-err { display: none; text-align: center; font-size: .88rem; color: #e05050; margin-top: .5rem; font-weight: 600; }
 
     /* ─── FOOTER ─── */
     footer {
@@ -433,6 +533,8 @@
     @media (max-width: 900px) {
       .streams-grid, .team-grid, .pricing-grid, .how-layout, .contact-layout { grid-template-columns: 1fr; }
       .psych-grid { grid-template-columns: 1fr 1fr; }
+      .ai-banner  { grid-template-columns: 1fr; }
+      .ai-points  { grid-template-columns: 1fr; }
       .how-cta-box { position: static; }
       .nav-links { display: none; }
     }
@@ -451,6 +553,7 @@
   <a class="nav-logo" href="#home"><span class="logo-a">A</span>CTUAL<span style="color:inherit">Y</span><span class="logo-z">Z</span></a>
   <ul class="nav-links">
     <li><a href="#streams">What We Offer</a></li>
+    <li><a href="#ai-proofing">AI Proofing</a></li>
     <li><a href="#how">How It Works</a></li>
     <li><a href="#team">Mentors</a></li>
     <li><a href="#faq">FAQ</a></li>
@@ -463,7 +566,7 @@
   <div class="hero-inner">
     <span class="label">Personalised Mentorship · Made Accessible</span>
     <h1>The right guidance<br><em>changes everything.</em></h1>
-    <p class="hero-sub">India's top exam clearers — IAS, IIT, IRS — mentor you one-on-one. No batches. No generic advice. Just a strategy built entirely around you.</p>
+    <p class="hero-sub">India's UPSC Civil Services, JEE and CAT achievers mentor you one-on-one. No batches. No generic advice. Just a strategy built entirely around you.</p>
     <div class="btn-row">
       <a class="btn-fill"    href="#contact">Book Your First Session</a>
       <a class="btn-outline" href="#streams">See What We Offer</a>
@@ -474,7 +577,7 @@
         <div class="stat-lbl">Sessions Only</div>
       </div>
       <div>
-        <div class="stat-num">3</div>
+        <div class="stat-num">2</div>
         <div class="stat-lbl">Expert Mentors</div>
       </div>
       <div>
@@ -493,23 +596,21 @@
 <div class="strip-wrap">
   <div class="strip-track" id="strip">
     <!-- set A -->
-    <div class="strip-card"><div class="strip-avatar">AV</div><div><div class="strip-name">Aeshala Vamshi Krishna</div><div class="strip-tag">IIT Bombay · CSE 2016</div></div></div>
+    <div class="strip-card"><div class="strip-avatar">AV</div><div><div class="strip-name">Aeshala Vamshi Krishna</div><div class="strip-tag">IIT Bombay · UPSC CSE 2016</div></div></div>
     <div class="strip-card"><div class="strip-avatar">M</div><div><div class="strip-name">Madhubala</div><div class="strip-tag">IIT Roorkee · Ex-Toppers Academy</div></div></div>
-    <div class="strip-card"><div class="strip-avatar">DG</div><div><div class="strip-name">Dhiraj Ganji</div><div class="strip-tag">Ex-IRS Officer · Startup Leader</div></div></div>
     <div class="strip-card" style="background:var(--saffron-light); border-color:rgba(224,122,47,.25);"><div style="font-size:.85rem; font-weight:700; color:var(--saffron);">🎯 All exams · All India · 100% Online</div></div>
     <div class="strip-card"><div class="strip-avatar">AV</div><div><div class="strip-name">UPSC Strategy</div><div class="strip-tag">Answer writing · Interview prep</div></div></div>
     <div class="strip-card"><div class="strip-avatar">M</div><div><div class="strip-name">JEE Mentorship</div><div class="strip-tag">Problem solving · Time management</div></div></div>
-    <div class="strip-card"><div class="strip-avatar">DG</div><div><div class="strip-name">CAT Preparation</div><div class="strip-tag">Strategy · Mock analysis</div></div></div>
     <div class="strip-card" style="background:var(--saffron-light); border-color:rgba(224,122,47,.25);"><div style="font-size:.85rem; font-weight:700; color:var(--saffron);">🧠 Career Discovery · Psychometric Test</div></div>
+    <div class="strip-card" style="background:var(--saffron-light); border-color:rgba(224,122,47,.25);"><div style="font-size:.85rem; font-weight:700; color:var(--saffron);">🤖 AI-Proof Career Mapping — Only at Actualyz</div></div>
     <!-- set B (duplicate for seamless loop) -->
-    <div class="strip-card"><div class="strip-avatar">AV</div><div><div class="strip-name">Aeshala Vamshi Krishna</div><div class="strip-tag">IIT Bombay · CSE 2016</div></div></div>
+    <div class="strip-card"><div class="strip-avatar">AV</div><div><div class="strip-name">Aeshala Vamshi Krishna</div><div class="strip-tag">IIT Bombay · UPSC CSE 2016</div></div></div>
     <div class="strip-card"><div class="strip-avatar">M</div><div><div class="strip-name">Madhubala</div><div class="strip-tag">IIT Roorkee · Ex-Toppers Academy</div></div></div>
-    <div class="strip-card"><div class="strip-avatar">DG</div><div><div class="strip-name">Dhiraj Ganji</div><div class="strip-tag">Ex-IRS Officer · Startup Leader</div></div></div>
     <div class="strip-card" style="background:var(--saffron-light); border-color:rgba(224,122,47,.25);"><div style="font-size:.85rem; font-weight:700; color:var(--saffron);">🎯 All exams · All India · 100% Online</div></div>
     <div class="strip-card"><div class="strip-avatar">AV</div><div><div class="strip-name">UPSC Strategy</div><div class="strip-tag">Answer writing · Interview prep</div></div></div>
     <div class="strip-card"><div class="strip-avatar">M</div><div><div class="strip-name">JEE Mentorship</div><div class="strip-tag">Problem solving · Time management</div></div></div>
-    <div class="strip-card"><div class="strip-avatar">DG</div><div><div class="strip-name">CAT Preparation</div><div class="strip-tag">Strategy · Mock analysis</div></div></div>
     <div class="strip-card" style="background:var(--saffron-light); border-color:rgba(224,122,47,.25);"><div style="font-size:.85rem; font-weight:700; color:var(--saffron);">🧠 Career Discovery · Psychometric Test</div></div>
+    <div class="strip-card" style="background:var(--saffron-light); border-color:rgba(224,122,47,.25);"><div style="font-size:.85rem; font-weight:700; color:var(--saffron);">🤖 AI-Proof Career Mapping — Only at Actualyz</div></div>
   </div>
 </div>
 
@@ -548,28 +649,158 @@
   </div>
 </section>
 
+<!-- ════════ AI PROOFING ════════ -->
+<section class="section cream" id="ai-proofing">
+  <div class="section-head">
+    <span class="label">The AI Dimension</span>
+    <h2>Is your child's<br>future <em>AI-proof?</em></h2>
+    <p>AI is already restructuring which careers are safe and which are not. Actualyz is the only assessment in India that maps AI exposure for every career path we recommend — so you know before you invest five years preparing for the wrong one.</p>
+  </div>
+
+  <div class="ai-banner">
+    <div class="ai-pitch">
+      <h3>Same subject.<br>Completely<br>different fate.</h3>
+      <p>It is not about what your child studies — it is about the specific role they end up in. Two students can both study law and have completely different AI exposure over the next 15 years.</p>
+      <p class="ai-pull">"A legal researcher faces high AI disruption. A courtroom advocate is structurally protected. The difference isn't the subject — it's the role your profile naturally points you toward."</p>
+    </div>
+    <div class="ai-compare-wrap">
+      <div class="ai-compare-header"><span>High AI Risk</span><span></span><span>AI-Protected</span></div>
+      <div class="ai-row"><span class="ai-risk">Legal Researcher</span><span class="ai-arrow">→</span><span class="ai-safe">Courtroom Advocate</span></div>
+      <div class="ai-row"><span class="ai-risk">Generic Content Writer</span><span class="ai-arrow">→</span><span class="ai-safe">Creative Director</span></div>
+      <div class="ai-row"><span class="ai-risk">Data Entry Analyst</span><span class="ai-arrow">→</span><span class="ai-safe">Data Strategist</span></div>
+      <div class="ai-row"><span class="ai-risk">Pattern Diagnostics</span><span class="ai-arrow">→</span><span class="ai-safe">Clinical Surgeon</span></div>
+      <div class="ai-row"><span class="ai-risk">Junior Software Tester</span><span class="ai-arrow">→</span><span class="ai-safe">Systems Architect</span></div>
+    </div>
+  </div>
+
+  <div class="ai-points">
+    <div class="ai-point">
+      <div class="ai-num">01</div>
+      <h4>We rate every career path</h4>
+      <p>Each career recommendation in your child's report carries an explicit AI exposure rating — how vulnerable that specific role is to automation over the next 15 years. Not the field. The role.</p>
+    </div>
+    <div class="ai-point">
+      <div class="ai-num">02</div>
+      <h4>We match it to their wiring</h4>
+      <p>Some children are naturally built for roles that AI will amplify, not replace. We identify which side of that line your child's profile places them — before they choose a path.</p>
+    </div>
+    <div class="ai-point">
+      <div class="ai-num">03</div>
+      <h4>You decide with full clarity</h4>
+      <p>Before investing five years in a preparation path, you know whether that career will still matter in the world your child graduates into. No competitor offers this dimension.</p>
+    </div>
+  </div>
+</section>
+
 <!-- ════════ PSYCHOMETRIC ════════ -->
-<section class="section cream" id="psychometric">
+<section class="section white" id="psychometric">
   <div class="section-head">
     <span class="label">Our Flagship Assessment</span>
     <h2>The Actualyz<br>Psychometric Test.</h2>
-    <p>The same science Fortune 500 companies use to identify future leaders — now applied to help your child find their right path before they choose a stream.</p>
+    <p>The same science Fortune 500 companies use to identify future leaders — now applied to help your child find their right path before they choose a stream. Click any dimension to learn what we measure and why it matters.</p>
   </div>
   <div class="psych-grid">
-    <div class="psych-tile"><div class="t-icon">💡</div><h4>Natural Talent</h4><p>Uncover the core differentiator your child is naturally wired to excel at.</p></div>
-    <div class="psych-tile"><div class="t-icon">🤝</div><h4>Social & Leadership Skills</h4><p>Assess interpersonal strengths, communication and leadership potential.</p></div>
-    <div class="psych-tile"><div class="t-icon">🧮</div><h4>Maths & Logical Reasoning</h4><p>Measure analytical thinking and quantitative aptitude objectively.</p></div>
-    <div class="psych-tile"><div class="t-icon">📖</div><h4>Language & Expression</h4><p>Evaluate verbal ability, comprehension and clarity of communication.</p></div>
-    <div class="psych-tile"><div class="t-icon">🔬</div><h4>Scientific Aptitude</h4><p>Gauge interest and ability across physics, chemistry, biology and sciences.</p></div>
-    <div class="psych-tile"><div class="t-icon">👁️</div><h4>Learning Style</h4><p>Visual, auditory or kinesthetic — know how your child learns best.</p></div>
-    <div class="psych-tile"><div class="t-icon">🌟</div><h4>Natural Ambitions</h4><p>Discover what the child truly wants — independent of external pressure.</p></div>
-    <div class="psych-tile"><div class="t-icon">👨‍👩‍👧</div><h4>Parent Aspirations Test</h4><p>A separate test for parents to surface hopes and align them with strengths.</p></div>
-    <div class="psych-tile"><div class="t-icon">🗺️</div><h4>Career Shortlisting</h4><p>From hundreds of careers, we identify the best-fit options for your family discussion.</p></div>
+
+    <div class="psych-tile" onclick="toggleTile(this)">
+      <div class="tile-head">
+        <div class="tile-head-left"><div class="t-icon">💡</div><h4>Personality Type</h4></div>
+        <span class="tile-chevron">+</span>
+      </div>
+      <p class="tile-short">Uncover the cognitive style your child is naturally wired with.</p>
+      <div class="tile-expand"><div class="tile-expand-inner">We map your child's cognitive style using an MBTI-based framework across four dimensions: how they process the world (Introvert/Extrovert), what they pay attention to (Intuitive/Sensing), how they make decisions (Thinking/Feeling), and how they organise their life (Judging/Perceiving). This reveals which career environments they are naturally wired to thrive in — before they commit to one.</div></div>
+    </div>
+
+    <div class="psych-tile" onclick="toggleTile(this)">
+      <div class="tile-head">
+        <div class="tile-head-left"><div class="t-icon">🤝</div><h4>Social & Leadership Skills</h4></div>
+        <span class="tile-chevron">+</span>
+      </div>
+      <p class="tile-short">Assess interpersonal strengths, communication and leadership potential.</p>
+      <div class="tile-expand"><div class="tile-expand-inner">Measures interpersonal communication strength, comfort with authority and hierarchy, collaborative versus competitive drive, and natural leadership style — whether your child leads by influence, expertise, or formal authority. Shows which professional environments will energise them and which will drain them over a career.</div></div>
+    </div>
+
+    <div class="psych-tile" onclick="toggleTile(this)">
+      <div class="tile-head">
+        <div class="tile-head-left"><div class="t-icon">🧮</div><h4>Maths & Logical Reasoning</h4></div>
+        <span class="tile-chevron">+</span>
+      </div>
+      <p class="tile-short">Measure analytical thinking and quantitative aptitude objectively.</p>
+      <div class="tile-expand"><div class="tile-expand-inner">Objectively scores numerical ability, logical reasoning, pattern recognition, and spatial visualisation through timed tasks — not self-reported questionnaires. Directly predicts suitability for JEE, data-heavy careers, and quantitative fields. The score reflects genuine aptitude and cannot be inflated by coaching or short-term preparation.</div></div>
+    </div>
+
+    <div class="psych-tile" onclick="toggleTile(this)">
+      <div class="tile-head">
+        <div class="tile-head-left"><div class="t-icon">📖</div><h4>Language & Expression</h4></div>
+        <span class="tile-chevron">+</span>
+      </div>
+      <p class="tile-short">Evaluate verbal ability, comprehension and clarity of communication.</p>
+      <div class="tile-expand"><div class="tile-expand-inner">Measures verbal ability, reading comprehension depth, and the preference for written versus spoken communication. Identifies whether your child is better at processing or producing language — a distinction that changes which careers feel natural versus exhausting over an entire career. Critical input for recommending law, civil services, journalism, or management paths.</div></div>
+    </div>
+
+    <div class="psych-tile" onclick="toggleTile(this)">
+      <div class="tile-head">
+        <div class="tile-head-left"><div class="t-icon">🔬</div><h4>Scientific Aptitude</h4></div>
+        <span class="tile-chevron">+</span>
+      </div>
+      <p class="tile-short">Gauge genuine interest and ability across scientific domains.</p>
+      <div class="tile-expand"><div class="tile-expand-inner">Goes beyond 'does my child like science' to measure actual mechanical and scientific reasoning ability. Gauges genuine interest and aptitude across physics, chemistry, and biology — distinguishing students who enjoy the subject from those who are genuinely built to succeed professionally in a science-based career. Prevents the most common and expensive mistake: pushing a child into NEET or JEE preparation without this clarity.</div></div>
+    </div>
+
+    <div class="psych-tile" onclick="toggleTile(this)">
+      <div class="tile-head">
+        <div class="tile-head-left"><div class="t-icon">👁️</div><h4>Learning Style</h4></div>
+        <span class="tile-chevron">+</span>
+      </div>
+      <p class="tile-short">Visual, auditory or kinesthetic — know how your child learns best.</p>
+      <div class="tile-expand"><div class="tile-expand-inner">Identifies whether your child learns best through visuals, listening, physical experience, or reading and writing — using the VARK model. Most students study using methods that do not match how their brain actually processes information. Correcting this single mismatch can dramatically reduce study hours and improve retention — without changing the content they study at all.</div></div>
+    </div>
+
+    <div class="psych-tile" onclick="toggleTile(this)">
+      <div class="tile-head">
+        <div class="tile-head-left"><div class="t-icon">🌟</div><h4>Motivational Wiring</h4></div>
+        <span class="tile-chevron">+</span>
+      </div>
+      <p class="tile-short">Discover what truly drives your child — independent of external pressure.</p>
+      <div class="tile-expand"><div class="tile-expand-inner">Uses situational scenarios — not direct questions — to surface intrinsic versus extrinsic motivation. Identifies your child's core career drivers from a structured set: adventure and risk-taking, creativity, social service, continuous learning, independence, structured environments, or high-paced competitive settings. The distinction between intrinsic and extrinsic motivation is the single strongest predictor of long-term career satisfaction.</div></div>
+    </div>
+
+    <div class="psych-tile" onclick="toggleTile(this)">
+      <div class="tile-head">
+        <div class="tile-head-left"><div class="t-icon">👨‍👩‍👧</div><h4>Parent Aspirations Test</h4></div>
+        <span class="tile-chevron">+</span>
+      </div>
+      <p class="tile-short">A separate test for parents to surface hopes and align them with strengths.</p>
+      <div class="tile-expand"><div class="tile-expand-inner">Parents take a separate assessment alongside the student. This generates the Parent-Child Alignment Score — the emotional centrepiece of the discussion session. It maps precisely where your aspirations and your child's natural profile converge, and where they diverge. No other assessment in India offers this. The gap between these two profiles — not the profiles themselves — is what the mentor discussion resolves.</div></div>
+    </div>
+
+    <div class="psych-tile" onclick="toggleTile(this)">
+      <div class="tile-head">
+        <div class="tile-head-left"><div class="t-icon">🗺️</div><h4>Career Shortlisting</h4></div>
+        <span class="tile-chevron">+</span>
+      </div>
+      <p class="tile-short">From hundreds of careers, we identify the best-fit options for your family discussion.</p>
+      <div class="tile-expand"><div class="tile-expand-inner">From hundreds of career options, we shortlist the 3–5 paths that best fit your child's complete profile across all dimensions above. Each path is presented with the required exam, preparation timeline, and — uniquely — an AI exposure rating showing how vulnerable that specific role is to automation over the next 15 years. You don't just know what to pursue. You know whether it will still matter when your child enters the workforce.</div></div>
+    </div>
+
+    <!-- Differentiator tile — full width -->
+    <div class="psych-tile differentiator" onclick="toggleTile(this)">
+      <div class="tile-head">
+        <div class="tile-head-left">
+          <span class="diff-badge">Our Differentiator — Absent from every competitor</span>
+          <div class="t-icon">🔥</div>
+          <h4>Resilience & Grit Index</h4>
+        </div>
+        <span class="tile-chevron">+</span>
+      </div>
+      <p class="tile-short">The single most important predictor of success in Indian competitive exams — and the one dimension no other assessment in India measures.</p>
+      <div class="tile-expand"><div class="tile-expand-inner">Every competitor measures who your child is. Only Actualyz measures what they are built to endure. This dimension captures: Grit & Perseverance (sustained effort under slow feedback loops), Pressure Response Profile (performance when time-constrained — measured via live timed task, not questionnaire), Delayed Gratification Score (measured through an interactive game that cannot be coached), and Risk Calibration (measured via a bet game across six rounds). A child can have perfect aptitude scores and fail every competitive exam because this dimension was never addressed. We surface it — and then mentor around it.</div></div>
+    </div>
+
   </div>
 </section>
 
 <!-- ════════ HOW IT WORKS ════════ -->
-<section class="section white" id="how">
+<section class="section cream" id="how">
   <div class="how-layout">
     <div>
       <div class="section-head" style="margin-bottom:2rem;">
@@ -628,7 +859,7 @@
 </section>
 
 <!-- ════════ TEAM ════════ -->
-<section class="section cream" id="team">
+<section class="section white" id="team">
   <div class="section-head">
     <span class="label">The Mentors</span>
     <h2>Learn from those<br>who've done it.</h2>
@@ -639,9 +870,10 @@
     <div class="mentor-card">
       <div class="mentor-avatar">AV</div>
       <h3>Aeshala Vamshi Krishna</h3>
-      <div class="mentor-role">Guidance Expert · UPSC</div>
-      <p class="mentor-bio">B.Tech from IIT Bombay (2010–14) and a serving Civil Servant who cleared the UPSC Civil Services Examination in 2016. One of very few people in India who has navigated both the IIT system and the civil services — making his guidance uniquely grounded in real experience at the highest level.</p>
-      <span class="mentor-badge">IIT Bombay · CSE 2016</span>
+      <div class="mentor-role">Volunteer Mentor · UPSC (Personal Capacity)</div>
+      <p class="mentor-bio">B.Tech from IIT Bombay (2010–14) and a serving civil servant who cleared the UPSC Civil Services Examination in 2016. Vamshi contributes his guidance entirely in his personal capacity — on his own time, without any commercial remuneration, and not as a representative of the Government. His rare dual experience navigating both the IIT system and civil services gives him a vantage point no coaching class can replicate.</p>
+      <span class="mentor-badge">IIT Bombay · UPSC CSE 2016</span>
+      <p class="mentor-disclaimer">Guidance provided voluntarily in personal capacity outside official duties. Views are personal and do not represent the Government of India.</p>
     </div>
 
     <div class="mentor-card" style="border-color: var(--saffron); border-width: 2px;">
@@ -662,7 +894,7 @@
 </section>
 
 <!-- ════════ TESTIMONIALS ════════ -->
-<section class="section white" id="testimonials">
+<section class="section cream" id="testimonials">
   <div class="section-head">
     <span class="label">Hear From Students Like You</span>
     <h2>What our students say.</h2>
@@ -739,7 +971,7 @@
     </div>
     <div class="faq-item">
       <div class="faq-q">Who are the mentors?<span class="faq-icon">+</span></div>
-      <div class="faq-a"><div class="faq-a-inner">Our mentors have personally cleared India's hardest exams — a Civil Servant (CSE 2016), an IIT Roorkee graduate, and a former IRS Officer. They don't just know the syllabus; they know what it takes to actually clear the exam at the highest level.</div></div>
+      <div class="faq-a"><div class="faq-a-inner">Our mentors have personally cleared India's hardest exams — a civil servant who cleared UPSC Civil Services in 2016 after graduating from IIT Bombay, and an IIT Roorkee graduate who taught at Toppers Academy and co-founded a software startup. They don't just know the syllabus; they know what it takes to actually clear the exam at the highest level.</div></div>
     </div>
     <div class="faq-item">
       <div class="faq-q">My child is in Class 8. Which stream is right for them?<span class="faq-icon">+</span></div>
@@ -783,21 +1015,25 @@
       </div>
       <div class="c-point">
         <div class="c-icon">📧</div>
-        <div><strong>Email Us</strong><p>madhu@actualyz.com</p></div>
+        <div><strong>Email Us</strong><p><a href="mailto:madhu@actualyz.com" style="color:var(--saffron); text-decoration:none; font-weight:600;">madhu@actualyz.com</a></p></div>
       </div>
     </div>
-    <form onsubmit="submitForm(event)">
+    <!-- Form submissions go to madhu@actualyz.com via Formspree.
+         To activate: sign up at formspree.io, create a form for madhu@actualyz.com,
+         then replace YOUR_FORM_ID below with your actual form ID. -->
+    <form id="contact-form" onsubmit="submitForm(event)">
+      <input type="hidden" name="_subject" value="New Enquiry from Actualyz Website" />
       <div class="form-row">
-        <input type="text"  placeholder="Your Name *" required />
-        <input type="tel"   placeholder="Phone Number *" required />
+        <input type="text"  name="name"  placeholder="Your Name *" required />
+        <input type="tel"   name="phone" placeholder="Phone Number *" required />
       </div>
-      <input type="email" placeholder="Email Address *" required />
-      <select required>
+      <input type="email" name="email" placeholder="Email Address *" required />
+      <select name="role" required>
         <option value="" disabled selected>I am a… *</option>
         <option>Student</option>
         <option>Parent</option>
       </select>
-      <select required>
+      <select name="interest" required>
         <option value="" disabled selected>I'm interested in… *</option>
         <option>Career Discovery (below Class 10)</option>
         <option>JEE Preparation</option>
@@ -806,9 +1042,10 @@
         <option>CAT Preparation</option>
         <option>Other / Not Sure Yet</option>
       </select>
-      <textarea placeholder="Tell us a little about where you are right now — exam date, class, or anything else that helps us prepare for the call."></textarea>
+      <textarea name="message" placeholder="Tell us a little about where you are right now — exam date, class, or anything else that helps us prepare for the call."></textarea>
       <button type="submit" class="submit-btn">Request a Callback →</button>
       <p class="form-ok" id="form-ok">✓ Thank you! We'll reach out within 24 hours.</p>
+      <p class="form-err" id="form-err">Something went wrong. Please email us directly at madhu@actualyz.com</p>
     </form>
   </div>
 </section>
@@ -827,12 +1064,46 @@
 </footer>
 
 <script>
-  function submitForm(e) {
-    e.preventDefault();
-    e.target.reset();
-    document.getElementById('form-ok').style.display = 'block';
+  /* ── Psychometric tile accordion ── */
+  function toggleTile(tile) {
+    const isOpen = tile.classList.contains('open');
+    document.querySelectorAll('.psych-tile').forEach(t => t.classList.remove('open'));
+    if (!isOpen) tile.classList.add('open');
   }
 
+  /* ── Contact form submission ──
+     Replace YOUR_FORM_ID with your Formspree form ID.
+     Get one free at formspree.io using madhu@actualyz.com. */
+  async function submitForm(e) {
+    e.preventDefault();
+    const form = e.target;
+    const btn  = form.querySelector('.submit-btn');
+    btn.disabled = true;
+    btn.textContent = 'Sending…';
+
+    try {
+      const res = await fetch('https://formspree.io/f/YOUR_FORM_ID', {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      });
+      if (res.ok) {
+        form.reset();
+        document.getElementById('form-ok').style.display = 'block';
+        document.getElementById('form-err').style.display = 'none';
+      } else {
+        throw new Error('non-ok');
+      }
+    } catch (_) {
+      document.getElementById('form-err').style.display = 'block';
+      document.getElementById('form-ok').style.display  = 'none';
+    } finally {
+      btn.disabled = false;
+      btn.textContent = 'Request a Callback →';
+    }
+  }
+
+  /* ── FAQ accordion ── */
   document.querySelectorAll('.faq-q').forEach(q => {
     q.addEventListener('click', () => {
       const item = q.closest('.faq-item');
