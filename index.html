@@ -1044,11 +1044,12 @@
         <div><strong>Email Us</strong><p><a href="mailto:madhu@actualyz.com" style="color:var(--saffron); text-decoration:none; font-weight:600;">madhu@actualyz.com</a></p></div>
       </div>
     </div>
-    <!-- Form submissions go to madhu@actualyz.com via Formsubmit.co (no signup needed).
-         On the FIRST real submission, Formsubmit sends a one-time verification email
-         to madhu@actualyz.com — click that link to activate, then all enquiries arrive automatically. -->
-    <form id="contact-form" onsubmit="submitForm(event)">
-      <input type="hidden" name="_subject" value="New Enquiry from Actualyz Website" />
+    <!-- Form submissions go to madhu@actualyz.com via Formsubmit.co.
+         First submission triggers a one-time activation email to madhu@actualyz.com — click it once to activate. -->
+    <form id="contact-form" action="https://formsubmit.co/madhu@actualyz.com" method="POST">
+      <input type="hidden" name="_subject"  value="New Enquiry from Actualyz Website" />
+      <input type="hidden" name="_next"     value="https://actualyz.com/?thanks=1#contact" />
+      <input type="hidden" name="_captcha"  value="false" />
       <div class="form-row">
         <input type="text"  name="name"  placeholder="Your Name *" required />
         <input type="tel"   name="phone" placeholder="Phone Number *" required />
@@ -1070,8 +1071,7 @@
       </select>
       <textarea name="message" placeholder="Tell us a little about where you are right now — exam date, class, or anything else that helps us prepare for the call."></textarea>
       <button type="submit" class="submit-btn">Request a Callback →</button>
-      <p class="form-ok" id="form-ok">✓ Thank you! We'll reach out within 24 hours.</p>
-      <p class="form-err" id="form-err">Something went wrong. Please email us directly at madhu@actualyz.com</p>
+      <p class="form-ok" id="form-ok" style="display:none;">✓ Thank you! We'll reach out within 24 hours.</p>
     </form>
   </div>
 </section>
@@ -1097,40 +1097,10 @@
     if (!isOpen) tile.classList.add('open');
   }
 
-  /* ── Contact form submission via Formsubmit.co ──
-     No signup needed — first submission triggers a verification email to madhu@actualyz.com.
-     Click the link in that email once to activate, then all enquiries arrive automatically. */
-  async function submitForm(e) {
-    e.preventDefault();
-    const form = e.target;
-    const btn  = form.querySelector('.submit-btn');
-    btn.disabled = true;
-    btn.textContent = 'Sending…';
-
-    const data = {};
-    new FormData(form).forEach((v, k) => { data[k] = v; });
-
-    try {
-      const res  = await fetch('https://formsubmit.co/ajax/madhu@actualyz.com', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: JSON.stringify(data)
-      });
-      const json = await res.json();
-      if (json.success === 'true' || json.success === true) {
-        form.reset();
-        document.getElementById('form-ok').style.display = 'block';
-        document.getElementById('form-err').style.display = 'none';
-      } else {
-        throw new Error(json.message || 'non-ok');
-      }
-    } catch (_) {
-      document.getElementById('form-err').style.display = 'block';
-      document.getElementById('form-ok').style.display  = 'none';
-    } finally {
-      btn.disabled = false;
-      btn.textContent = 'Request a Callback →';
-    }
+  /* ── Show thank-you message if redirected back after form submission ── */
+  if (new URLSearchParams(window.location.search).get('thanks') === '1') {
+    document.getElementById('form-ok').style.display = 'block';
+    document.getElementById('contact-form').style.display = 'none';
   }
 
   /* ── FAQ accordion ── */
