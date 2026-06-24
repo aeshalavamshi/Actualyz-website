@@ -1107,18 +1107,22 @@
     btn.disabled = true;
     btn.textContent = 'Sending…';
 
+    const data = {};
+    new FormData(form).forEach((v, k) => { data[k] = v; });
+
     try {
-      const res = await fetch('https://formsubmit.co/ajax/madhu@actualyz.com', {
+      const res  = await fetch('https://formsubmit.co/ajax/madhu@actualyz.com', {
         method: 'POST',
-        body: new FormData(form),
-        headers: { 'Accept': 'application/json' }
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(data)
       });
-      if (res.ok) {
+      const json = await res.json();
+      if (json.success === 'true' || json.success === true) {
         form.reset();
         document.getElementById('form-ok').style.display = 'block';
         document.getElementById('form-err').style.display = 'none';
       } else {
-        throw new Error('non-ok');
+        throw new Error(json.message || 'non-ok');
       }
     } catch (_) {
       document.getElementById('form-err').style.display = 'block';
